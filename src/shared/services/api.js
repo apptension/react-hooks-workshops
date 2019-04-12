@@ -30,9 +30,8 @@ export default {
   async get(id) {
     return todos[id];
   },
-  async put(id, data) {
-    await timeout(1000);
-    todos[id] = data;
+  async put(id, isDone) {
+    todos[id].isDone = isDone;
     return todos[id];
   },
   async post(data) {

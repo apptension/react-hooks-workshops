@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import { compose } from 'ramda';
 
-import { Form, Button } from './newTodoForm.styles';
+import { Form, Row, TextField, FormatButton, SubmitButton } from './newTodoForm.styles';
 import messages from './newTodoForm.messages';
-
-import { TextField } from '../textField';
 
 const NewTodoFormComponent = memo(({ intl, onSubmit }) => {
   const textFieldRef = useRef();
@@ -20,6 +18,10 @@ const NewTodoFormComponent = memo(({ intl, onSubmit }) => {
     textFieldRef.current.setUpperCase();
   };
 
+  const handleSetLowerCase = () => {
+    textFieldRef.current.setLowerCase();
+  };
+
   const handleSubmit = useCallback(() => {
     onSubmit({ description });
     textFieldRef.current.clear();
@@ -27,9 +29,14 @@ const NewTodoFormComponent = memo(({ intl, onSubmit }) => {
 
   return (
     <Form noValidate>
-      <TextField ref={textFieldRef} onChange={handleTextFieldChange} />
-      <Button onClick={handleSetUpperCase}>{intl.formatMessage(messages.formatUppercase)}</Button>
-      <Button onClick={handleSubmit}>{intl.formatMessage(messages.submitButton)}</Button>
+      <Row>
+        <TextField ref={textFieldRef} onChange={handleTextFieldChange} />
+        <SubmitButton onClick={handleSubmit}>{intl.formatMessage(messages.submitButton)}</SubmitButton>
+      </Row>
+      <Row>
+        <FormatButton onClick={handleSetUpperCase}>{intl.formatMessage(messages.formatUppercase)}</FormatButton>
+        <FormatButton onClick={handleSetLowerCase}>{intl.formatMessage(messages.formatLowercase)}</FormatButton>
+      </Row>
     </Form>
   );
 });

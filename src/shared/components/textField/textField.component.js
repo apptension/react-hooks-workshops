@@ -3,7 +3,7 @@ import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } f
 import { Input } from './textField.styles';
 
 // eslint-disable-next-line react/prop-types
-const TextFieldComponent = ({ onChange, defaultValue = '' }, ref) => {
+const TextFieldComponent = ({ className, onChange, defaultValue = '' }, ref) => {
   const inputRef = useRef();
   const [inputValue, setInputValue] = useState(defaultValue);
 
@@ -24,7 +24,7 @@ const TextFieldComponent = ({ onChange, defaultValue = '' }, ref) => {
     [inputValue]
   );
 
-  return <Input ref={inputRef} value={inputValue} onChange={handleInputChange} />;
+  return <Input className={className} ref={inputRef} value={inputValue} onChange={handleInputChange} />;
 };
 
 export const TextField = forwardRef(TextFieldComponent);

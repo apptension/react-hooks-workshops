@@ -20,6 +20,8 @@ export const mapDispatchToProps = dispatch =>
     {
       fetchTodos: TodosActions.fetchTodos,
       createTodo: TodosActions.createTodo,
+      updateTodoStatus: TodosActions.updateTodoStatus,
+      removeTodo: TodosActions.removeTodo,
     },
     dispatch
   );

@@ -8,6 +8,10 @@ export default defineMessages({
   },
   formatUppercase: {
     id: 'newTodoForm.formatUppercase',
-    defaultMessage: 'UpperCase',
+    defaultMessage: 'AA',
+  },
+  formatLowercase: {
+    id: 'newTodoForm.formatLowercase',
+    defaultMessage: 'aa',
   },
 });

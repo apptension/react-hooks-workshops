@@ -13,9 +13,9 @@ function* createTodo({ todo }) {
   yield put(TodosActions.createTodoSuccess(createdTodo));
 }
 
-function* updateTodo({ id, todo }) {
-  const updatedTodo = yield call(api.put, id, todo);
-  yield put(TodosActions.updateTodoSuccess(id, updatedTodo));
+function* updateTodoStatus({ id, isDone }) {
+  yield call(api.put, id, isDone);
+  yield put(TodosActions.updateTodoStatusSuccess(id, isDone));
 }
 
 function* deleteTodo({ id }) {
@@ -27,7 +27,7 @@ export function* watchTodos() {
   yield all([
     takeLatest(TodosTypes.FETCH_TODOS, fetchTodos),
     takeLatest(TodosTypes.CREATE_TODO, createTodo),
-    takeLatest(TodosTypes.UPDATE_TODO, updateTodo),
+    takeLatest(TodosTypes.UPDATE_TODO_STATUS, updateTodoStatus),
     takeLatest(TodosTypes.DELETE_TODO, deleteTodo),
   ]);
 }
