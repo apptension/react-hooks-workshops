@@ -1,18 +1,18 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import { compose } from 'ramda';
 
-import { Container } from './todosItem.styles';
+import { Container, Details, Description, DateTime, Checkbox } from './todosItem.styles';
 
 const TodosItemComponent = memo(({ description, created, isDone }) => {
-  const statusLabel = useMemo(() => {
-    return isDone ? 'Done' : 'Undone';
-  }, [isDone]);
-
   return (
-    <Container>
-      {description} | Created: {created} | {statusLabel}
+    <Container isActive={!isDone}>
+      <Details>
+        <Description>{description}</Description>
+        <DateTime>{created}</DateTime>
+      </Details>
+      <Checkbox isChecked={isDone} />
     </Container>
   );
 });

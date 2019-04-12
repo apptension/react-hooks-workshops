@@ -13,3 +13,7 @@ export const Logo = styled(LogoSVG)`
   width: 100px;
   margin-bottom: 20px;
 `;
+
+export const Todos = styled.div`
+  padding: 20px 0;
+`;

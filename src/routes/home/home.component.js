@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import { TodosItem } from '../../shared/components/todosItem';
 import { NewTodoForm } from '../../shared/components/newTodoForm';
 import messages from './home.messages';
-import { Container, Logo } from './home.styles';
+import { Container, Logo, Todos } from './home.styles';
 
 export const Home = memo(({ fetchTodos, createTodo, todos, intl }) => {
   useEffect(() => {
@@ -17,9 +17,11 @@ export const Home = memo(({ fetchTodos, createTodo, todos, intl }) => {
       <Helmet title={intl.formatMessage(messages.pageTitle)} />
       <Logo />
       <NewTodoForm onSubmit={createTodo} />
-      {todos.map(data => (
-        <TodosItem key={data.id} {...data} />
-      ))}
+      <Todos>
+        {todos.map(data => (
+          <TodosItem key={data.id} {...data} />
+        ))}
+      </Todos>
     </Container>
   );
 });

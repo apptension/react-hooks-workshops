@@ -1,4 +1,23 @@
-const todos = [];
+const todos = [
+  {
+    id: 0,
+    created: 1555096121918,
+    isDone: false,
+    description: 'Create usePromise hook',
+  },
+  {
+    id: 1,
+    created: 1555096121918,
+    isDone: true,
+    description: 'Go sleep',
+  },
+  {
+    id: 2,
+    created: 155509612218,
+    isDone: false,
+    description: 'Create useSelector hook',
+  },
+];
 
 function timeout(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
