@@ -19,6 +19,7 @@ export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchTodos: TodosActions.fetchTodos,
+      createTodo: TodosActions.createTodo,
     },
     dispatch
   );

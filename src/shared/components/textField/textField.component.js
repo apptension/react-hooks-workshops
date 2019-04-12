@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState, useCallback, useRef } from 'react';
+import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
 
 import { Input } from './textField.styles';
 
@@ -7,13 +7,11 @@ const TextFieldComponent = ({ onChange, defaultValue }, ref) => {
   const inputRef = useRef();
   const [inputValue, setInputValue] = useState(defaultValue);
 
-  const handleInputChange = useCallback(
-    event => {
-      setInputValue(event.target.value);
-      onChange(event);
-    },
-    [onChange]
-  );
+  useEffect(() => {
+    onChange(inputValue);
+  }, [inputValue, onChange]);
+
+  const handleInputChange = event => setInputValue(event.target.value);
 
   useImperativeHandle(ref, () => ({
     focus: () => {

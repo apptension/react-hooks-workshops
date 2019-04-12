@@ -12,8 +12,8 @@ const NewTodoFormComponent = memo(({ intl, onSubmit }) => {
   const textFieldRef = useRef();
   const [description, setDescription] = useState('');
 
-  const handleTextFieldChange = event => {
-    setDescription(event.target.value);
+  const handleTextFieldChange = value => {
+    setDescription(value);
   };
 
   const handleSetUpperCase = () => {
@@ -22,6 +22,7 @@ const NewTodoFormComponent = memo(({ intl, onSubmit }) => {
 
   const handleSubmit = useCallback(() => {
     onSubmit({ description });
+    textFieldRef.current.clear();
   }, [description, onSubmit]);
 
   return (

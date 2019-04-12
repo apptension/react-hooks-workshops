@@ -21,6 +21,8 @@ export default {
     const nextId = todos.length;
     todos.push({
       id: nextId,
+      created: Date.now(),
+      isDone: false,
       ...data,
     });
     return todos[nextId];

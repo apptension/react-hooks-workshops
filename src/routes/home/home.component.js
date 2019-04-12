@@ -7,7 +7,7 @@ import { NewTodoForm } from '../../shared/components/newTodoForm';
 import messages from './home.messages';
 import { Container, Logo } from './home.styles';
 
-export const Home = memo(({ fetchTodos, todos, intl }) => {
+export const Home = memo(({ fetchTodos, createTodo, todos, intl }) => {
   useEffect(() => {
     fetchTodos();
   }, [fetchTodos]);
@@ -16,7 +16,7 @@ export const Home = memo(({ fetchTodos, todos, intl }) => {
     <Container>
       <Helmet title={intl.formatMessage(messages.pageTitle)} />
       <Logo />
-      <NewTodoForm />
+      <NewTodoForm onSubmit={createTodo} />
       {todos.map(data => (
         <TodosItem key={data.id} {...data} />
       ))}
@@ -28,4 +28,5 @@ Home.propTypes = {
   intl: PropTypes.object.isRequired,
   todos: PropTypes.array.isRequired,
   fetchTodos: PropTypes.func.isRequired,
+  createTodo: PropTypes.func.isRequired,
 };

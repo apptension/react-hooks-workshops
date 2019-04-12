@@ -8,6 +8,11 @@ function* fetchTodos() {
   yield put(TodosActions.fetchTodosSuccess(todos));
 }
 
+function* createTodo({ todo }) {
+  const createdTodo = yield call(api.post, todo);
+  yield put(TodosActions.createTodoSuccess(createdTodo));
+}
+
 function* updateTodo({ id, todo }) {
   const updatedTodo = yield call(api.put, id, todo);
   yield put(TodosActions.updateTodoSuccess(id, updatedTodo));
@@ -21,6 +26,7 @@ function* deleteTodo({ id }) {
 export function* watchTodos() {
   yield all([
     takeLatest(TodosTypes.FETCH_TODOS, fetchTodos),
+    takeLatest(TodosTypes.CREATE_TODO, createTodo),
     takeLatest(TodosTypes.UPDATE_TODO, updateTodo),
     takeLatest(TodosTypes.DELETE_TODO, deleteTodo),
   ]);
