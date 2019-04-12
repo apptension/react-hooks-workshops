@@ -27,7 +27,7 @@ const NewTodoFormComponent = memo(({ intl, onSubmit }) => {
 
   return (
     <Form noValidate>
-      <TextField ref={textFieldRef} defaultValue="Some text" onChange={handleTextFieldChange} />
+      <TextField ref={textFieldRef} onChange={handleTextFieldChange} />
       <Button onClick={handleSetUpperCase}>{intl.formatMessage(messages.formatUppercase)}</Button>
       <Button onClick={handleSubmit}>{intl.formatMessage(messages.submitButton)}</Button>
     </Form>
