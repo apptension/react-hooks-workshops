@@ -1,16 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { TextFieldComponent as TextField } from '../textField.component';
-
+import { TextField } from '../textField.component';
 
 describe('TextField: Component', () => {
-  const defaultProps = {
-  };
+  const defaultProps = {};
 
-  const component = (props) => (
-    <TextField {...defaultProps} {...props} />
-  );
+  const component = props => <TextField {...defaultProps} {...props} />;
 
   const render = (props = {}) => shallow(component(props));
 

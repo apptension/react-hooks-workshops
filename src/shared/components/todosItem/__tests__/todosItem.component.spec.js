@@ -1,16 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { TodosItemComponent as TodosItem } from '../todosItem.component';
-
+import { TodosItem } from '../todosItem.component';
 
 describe('TodosItem: Component', () => {
-  const defaultProps = {
-  };
+  const defaultProps = {};
 
-  const component = (props) => (
-    <TodosItem {...defaultProps} {...props} />
-  );
+  const component = props => <TodosItem {...defaultProps} {...props} />;
 
   const render = (props = {}) => shallow(component(props));
 

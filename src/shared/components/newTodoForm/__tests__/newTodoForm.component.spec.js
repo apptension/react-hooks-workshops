@@ -1,16 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { NewTodoFormComponent as NewTodoForm } from '../newTodoForm.component';
-
+import { NewTodoForm } from '../newTodoForm.component';
 
 describe('NewTodoForm: Component', () => {
-  const defaultProps = {
-  };
+  const defaultProps = {};
 
-  const component = (props) => (
-    <NewTodoForm {...defaultProps} {...props} />
-  );
+  const component = props => <NewTodoForm {...defaultProps} {...props} />;
 
   const render = (props = {}) => shallow(component(props));
 

@@ -3,12 +3,9 @@ import Immutable from 'seamless-immutable';
 
 import { selectTodosDomain } from '../todos.selectors';
 
-
 describe('Todos: selectors', () => {
   const state = Immutable({
-    todos: {
-
-    },
+    todos: {},
   });
 
   describe('selectTodosDomain', () => {

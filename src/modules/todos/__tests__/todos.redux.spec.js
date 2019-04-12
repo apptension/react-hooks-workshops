@@ -1,12 +1,7 @@
 import { expect } from 'chai';
 import Immutable from 'seamless-immutable';
 
-import {
-  reducer as todosReducer,
-  TodosActions,
-  TodosTypes,
-} from '../todos.redux';
-
+import { reducer as todosReducer, TodosActions, TodosTypes } from '../todos.redux';
 
 describe('Todos: redux', () => {
   const state = Immutable({});
