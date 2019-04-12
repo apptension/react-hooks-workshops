@@ -8,12 +8,20 @@ import { compose } from 'ramda';
 
 import { Home } from './home.component';
 import { selectLocalesLanguage } from '../../modules/locales';
+import { TodosActions, selectTodos } from '../../modules/todos';
 
 const mapStateToProps = createStructuredSelector({
   language: selectLocalesLanguage,
+  todos: selectTodos,
 });
 
-export const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchTodos: TodosActions.fetchTodos,
+    },
+    dispatch
+  );
 
 export default compose(
   hot(module),
