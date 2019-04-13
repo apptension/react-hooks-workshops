@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback, useRef } from 'react';
+import React, { memo, useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import { compose } from 'ramda';
@@ -9,6 +9,10 @@ import messages from './newTodoForm.messages';
 const NewTodoFormComponent = memo(({ intl, onSubmit }) => {
   const textFieldRef = useRef();
   const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    textFieldRef.current.focus();
+  }, [textFieldRef]);
 
   const handleTextFieldChange = value => {
     setDescription(value);
@@ -22,16 +26,20 @@ const NewTodoFormComponent = memo(({ intl, onSubmit }) => {
     textFieldRef.current.setLowerCase();
   };
 
-  const handleSubmit = useCallback(() => {
-    onSubmit({ description });
-    textFieldRef.current.clear();
-  }, [description, onSubmit]);
+  const handleSubmit = useCallback(
+    event => {
+      event.preventDefault();
+      onSubmit({ description });
+      textFieldRef.current.clear();
+    },
+    [description, onSubmit]
+  );
 
   return (
-    <Form noValidate>
+    <Form noValidate onSubmit={handleSubmit}>
       <Row>
         <TextField ref={textFieldRef} onChange={handleTextFieldChange} />
-        <SubmitButton onClick={handleSubmit}>{intl.formatMessage(messages.submitButton)}</SubmitButton>
+        <SubmitButton type="submit">{intl.formatMessage(messages.submitButton)}</SubmitButton>
       </Row>
       <Row>
         <FormatButton onClick={handleSetUpperCase}>{intl.formatMessage(messages.formatUppercase)}</FormatButton>
