@@ -28,7 +28,7 @@ const TextFieldComponent = ({ className, onChange, defaultValue = '' }, ref) => 
   const handleInputChange = event => dispatch({ type: ACTION_TYPES.SET_VALUE, payload: event.target.value });
 
   useImperativeHandle(ref, () => ({
-    focus: inputRef.current.focus,
+    focus: () => inputRef.current.focus(),
     clear: () => dispatch({ type: ACTION_TYPES.SET_VALUE, payload: '' }),
     setUpperCase: () => dispatch({ type: ACTION_TYPES.SET_UPPERCASE_VALUE }),
     setLowerCase: () => dispatch({ type: ACTION_TYPES.SET_LOWERCASE_VALUE }),
