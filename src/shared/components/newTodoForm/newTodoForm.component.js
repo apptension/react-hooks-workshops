@@ -1,49 +1,40 @@
-import React, { memo, useState, useCallback, useRef, useEffect } from 'react';
+import React, { memo, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import { compose } from 'ramda';
 
 import { Form, Row, TextField, FormatButton, SubmitButton } from './newTodoForm.styles';
 import messages from './newTodoForm.messages';
+import { useFormReducer } from './newTodoForm.reducers';
 
 const NewTodoFormComponent = memo(({ intl, onSubmit }) => {
   const textFieldRef = useRef();
-  const [description, setDescription] = useState('');
+  const { value, clear, setLowerCaseValue, setUpperCaseValue, setValue } = useFormReducer();
 
   useEffect(() => {
     textFieldRef.current.focus();
   }, [textFieldRef]);
 
-  const handleTextFieldChange = value => {
-    setDescription(value);
-  };
-
-  const handleSetUpperCase = () => {
-    textFieldRef.current.setUpperCase();
-  };
-
-  const handleSetLowerCase = () => {
-    textFieldRef.current.setLowerCase();
-  };
+  const handleInputChange = event => setValue(event.target.value);
 
   const handleSubmit = useCallback(
     event => {
       event.preventDefault();
-      onSubmit({ description });
-      textFieldRef.current.clear();
+      onSubmit({ description: value });
+      clear();
     },
-    [description, onSubmit]
+    [value]
   );
 
   return (
     <Form noValidate onSubmit={handleSubmit}>
       <Row>
-        <TextField ref={textFieldRef} onChange={handleTextFieldChange} />
+        <TextField ref={textFieldRef} value={value} onChange={handleInputChange} />
         <SubmitButton type="submit">{intl.formatMessage(messages.submitButton)}</SubmitButton>
       </Row>
       <Row>
-        <FormatButton onClick={handleSetUpperCase}>{intl.formatMessage(messages.formatUppercase)}</FormatButton>
-        <FormatButton onClick={handleSetLowerCase}>{intl.formatMessage(messages.formatLowercase)}</FormatButton>
+        <FormatButton onClick={setUpperCaseValue}>{intl.formatMessage(messages.formatUppercase)}</FormatButton>
+        <FormatButton onClick={setLowerCaseValue}>{intl.formatMessage(messages.formatLowercase)}</FormatButton>
       </Row>
     </Form>
   );

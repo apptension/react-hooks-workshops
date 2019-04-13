@@ -16,9 +16,7 @@ export const Home = memo(({ fetchTodos, createTodo, todos, updateTodoStatus, int
     fetchTodos();
   }, [fetchTodos]);
 
-  const sortedTodos = useMemo(() => {
-    return getSortedData(todos, order === ORDER_TYPES.ASC);
-  }, [todos, order]);
+  const sortedTodos = useMemo(() => getSortedData(todos, order === ORDER_TYPES.ASC), [todos, order]);
 
   const handleOrderChange = () => {
     const hasAscOrder = order === ORDER_TYPES.ASC ? ORDER_TYPES.DESC : ORDER_TYPES.ASC;

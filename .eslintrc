@@ -62,7 +62,6 @@
     "import/newline-after-import": ["error", { "count": 1 }],
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
     "react/display-name": 0
   },
   "settings": {
